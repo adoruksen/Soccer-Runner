@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UIControl;
-using System;
+using DG.Tweening;
+
 
 namespace CharacterControl 
 {
     public class PlayerCollideControl : MonoBehaviour
     {
-
         void Start()
         {
             RigidbodyActivator(true);
@@ -35,19 +35,24 @@ namespace CharacterControl
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("enemy"))
+            Interactable interactable = other.GetComponent<Interactable>();
+            if (interactable!=null)
             {
-                StartCoroutine(EnemyCollision());
+                if (interactable.type == InteractableType.Enemy)
+                {
+                    StartCoroutine(EnemyCollision());
+                }
+                if (interactable.type == InteractableType.EndChunk)
+                {
+                    Vector3 pos = new Vector3(other.transform.position.x-1, other.transform.position.y, other.transform.position.z);
+                    LevelCompleteFunc(pos);
+                }
+                if (interactable.type == InteractableType.Friend)
+                {
+                    PlayerMovement.instance.playerSpeed = 7;
+                }
             }
-            if (other.CompareTag("LevelEnd"))
-            {
-                LevelCompleteFunc();
-            }
-            if (other.CompareTag("Friend"))
-            {
-                PlayerMovement.instance.playerSpeed = 7;
-            }
-
+            
         }
 
 
@@ -55,7 +60,6 @@ namespace CharacterControl
         {
             ColliderActivator(true);
             RigidbodyActivator(false);
-            Debug.Log("carpısma oldu");
 
             LevelManager.gameState = GameState.Finish;
             PlayerMovement.instance.isLose = true;
@@ -72,27 +76,23 @@ namespace CharacterControl
         }
 
 
-        void LevelCompleteFunc()
+        void LevelCompleteFunc(Vector3 center)
         {
             LevelManager.gameState = GameState.Finish;
 
             DuringGame.instance.transform.GetChild(0).gameObject.SetActive(false);
             CompletePanel.instance.completePanel.SetActive(true);
 
+            CinemachineController.instance.FovAdder(30);
+            PlayerMovement.instance.transform.DOMove(center, .5f);
             PlayerMovement.instance.playerSpeed = 0;
 
-            int a = UnityEngine.Random.Range(0, 2);
             string[] winAnims = new string[3];
             winAnims[0] = "Win1";
             winAnims[1] = "Win2";
             winAnims[2] = "Win3";
-            PlayerAnimController.instance.animator.Play(winAnims[a]);
+            PlayerAnimController.instance.animator.Play(winAnims[Random.Range(0,2)]);
         }
-
-
-
-
-
     }
 }
 

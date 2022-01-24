@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 620251508125574377}
   m_Layer: 0
   m_Name: Chunk
-  m_TagString: Untagged
+  m_TagString: Chunk
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,8 +123,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10, y: 2.220446e-16, z: 7.5045066}
+  m_Center: {x: 0, y: 0, z: 0.10537982}
 --- !u!1 &4012066103041285999
 GameObject:
   m_ObjectHideFlags: 0

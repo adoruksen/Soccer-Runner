@@ -34,9 +34,6 @@ namespace CharacterControl
                 Vector3 pos = transform.localPosition;
                 pos.z += speed * Time.deltaTime;
                 transform.localPosition = pos;
-
-                
-
             }
         }
         public void MovementFunction()
@@ -55,7 +52,6 @@ namespace CharacterControl
                     playerSpeed = 10;
                     gameObject.transform.DOMoveX(0, .5f);
                 }
-
             }
             
         }
@@ -64,10 +60,6 @@ namespace CharacterControl
         {
             return playerSpeed;
         }
-
-       
-        
-
     }
 }
 

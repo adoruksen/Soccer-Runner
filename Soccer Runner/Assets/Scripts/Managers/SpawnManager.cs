@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CharacterControl;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -15,25 +16,24 @@ public class SpawnManager : MonoBehaviour
 
 
     [Header ("Prefabs")]
-    [SerializeField] GameObject friendPrefab;
-    [SerializeField] GameObject enemyPrefab;
-    [SerializeField] GameObject chunkPrefab;
-    [SerializeField] GameObject levelEndPrefab;
+    public GameObject friendPrefab;
+    public GameObject enemyPrefab;
+    public GameObject chunkPrefab;
+    public GameObject levelEndPrefab;
 
     [Header("Parameters")]
-    [SerializeField] int chunkCount = 10;
-    //[SerializeField] int enemyCount;
-    //[SerializeField] int friendCount;
+    public int chunkCount = 10;
+    public int enemyCount = 15;
 
-    //[Header("Queues")]
-    //Queue<GameObject> enemyQueue = new Queue<GameObject>();
-    //Queue<GameObject> friendQueue = new Queue<GameObject>();
+    [Header("Vectors")]
+    Vector3 enemySpawnPos;
 
     void Start()
     {
         InstantiateChunks();
         InstantiateEnemy();
         InstantiateFriend();
+        enemySpawnPos = new Vector3(-1.5f ,0,0) + transform.GetChild(0).GetChild(chunkCount - 1).position;
     }
 
     void InstantiateChunks()
@@ -54,11 +54,11 @@ public class SpawnManager : MonoBehaviour
 
     void InstantiateEnemy()
     {
-        Vector3 pos = new Vector3(0, 0, chunkPrefab.GetComponent<Renderer>().bounds.size.z);
+
         for (int i = 1; i < chunkCount ; i++)
         {
+            Vector3 pos = new Vector3(0, 0,Random.Range(10,20));
             GameObject myEnemy = Instantiate(enemyPrefab, new Vector3(-1.5f,0,0) + pos * i,enemyPrefab.transform.localRotation, transform.GetChild(1));
-            //enemyQueue.Enqueue(myEnemy);
         }
     }
 
@@ -67,12 +67,8 @@ public class SpawnManager : MonoBehaviour
         Vector3 pos = new Vector3(0, 0, chunkPrefab.GetComponent<Renderer>().bounds.size.z);
         for (int i = 1; i < chunkCount; i++)
         {
-            GameObject myFriend = Instantiate(friendPrefab, new Vector3(1.5f, 0, 0) + pos * i, friendPrefab.transform.localRotation, transform.GetChild(2));
-            //friendQueue.Enqueue(myFriend);
+            GameObject myFriend = Instantiate(friendPrefab, new Vector3(1.5f, 0, 0) + pos * i, friendPrefab.transform.localRotation ,transform.GetChild(2));
         }
     }
-    void Update()
-    {
-        
-    }
+
 }
