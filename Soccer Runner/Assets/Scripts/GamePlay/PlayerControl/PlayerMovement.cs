@@ -30,7 +30,7 @@ namespace CharacterControl
             if (LevelManager.gameState==GameState.Normal)
             {
                 PlayerAnimController.instance.SetAnimState(AnimState.Run);
-                float speed = Getspeed();
+                float speed = GetSpeed();
                 Vector3 pos = transform.localPosition;
                 pos.z += speed * Time.deltaTime;
                 transform.localPosition = pos;
@@ -45,6 +45,7 @@ namespace CharacterControl
                     DuringGame.instance.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                     playerSpeed = 15;
                     gameObject.transform.DOMoveX(-3, .5f);
+
                 }
 
                 else if (Input.GetKeyUp(KeyCode.Mouse0) && !isLose)
@@ -56,7 +57,7 @@ namespace CharacterControl
             
         }
 
-        public float Getspeed()
+        public float GetSpeed()
         {
             return playerSpeed;
         }
