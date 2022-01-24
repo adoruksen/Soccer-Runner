@@ -13,6 +13,7 @@ namespace UIControl
         {
             LevelManager.gameState = GameState.BeforeStart;
             SetValues();
+            Debug.Log("start panel var");
         }
 
         void SetValues()

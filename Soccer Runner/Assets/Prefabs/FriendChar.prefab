@@ -1753,7 +1753,6 @@ GameObject:
   - component: {fileID: 9070543335228149871}
   - component: {fileID: 4281680243172065658}
   - component: {fileID: 3157391945426782586}
-  - component: {fileID: 5210054094246392064}
   m_Layer: 0
   m_Name: FriendChar
   m_TagString: Friend
@@ -1822,19 +1821,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.65259624, y: 1.5589623, z: 1.1451207}
   m_Center: {x: -0.008529782, y: 0.75557494, z: -0.35457832}
---- !u!114 &5210054094246392064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2326944162462699695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d6a40452aa9794f9dbc0b9d2d935e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
 --- !u!1 &2437209354905041860
 GameObject:
   m_ObjectHideFlags: 0
